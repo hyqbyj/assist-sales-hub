@@ -73,7 +73,10 @@ const CRMAnalysis = () => {
       newPotential: 6,
       newInterest: 8,
       wonDeals: 1,
-      newRobotTests: 0
+      newRobotTests: 0,
+      monthlyPerformance: 30000,
+      lastMonthPerformance: 25000,
+      workScore: 92
     },
     {
       employee: "李四",
@@ -107,7 +110,10 @@ const CRMAnalysis = () => {
       newPotential: 4,
       newInterest: 6,
       wonDeals: 0,
-      newRobotTests: 1
+      newRobotTests: 1,
+      monthlyPerformance: 18000,
+      lastMonthPerformance: 20000,
+      workScore: 78
     },
     {
       employee: "王五",
@@ -141,7 +147,10 @@ const CRMAnalysis = () => {
       newPotential: 5,
       newInterest: 7,
       wonDeals: 2,
-      newRobotTests: 0
+      newRobotTests: 0,
+      monthlyPerformance: 50000,
+      lastMonthPerformance: 35000,
+      workScore: 88
     },
     {
       employee: "赵六",
@@ -175,7 +184,10 @@ const CRMAnalysis = () => {
       newPotential: 2,
       newInterest: 3,
       wonDeals: 0,
-      newRobotTests: 0
+      newRobotTests: 0,
+      monthlyPerformance: 12000,
+      lastMonthPerformance: 15000,
+      workScore: 65
     },
     {
       employee: "孙七",
@@ -209,7 +221,10 @@ const CRMAnalysis = () => {
       newPotential: 3,
       newInterest: 5,
       wonDeals: 1,
-      newRobotTests: 0
+      newRobotTests: 0,
+      monthlyPerformance: 25000,
+      lastMonthPerformance: 22000,
+      workScore: 82
     },
     {
       employee: "周八",
@@ -243,7 +258,10 @@ const CRMAnalysis = () => {
       newPotential: 4,
       newInterest: 6,
       wonDeals: 1,
-      newRobotTests: 1
+      newRobotTests: 1,
+      monthlyPerformance: 48000,
+      lastMonthPerformance: 52000,
+      workScore: 85
     },
     {
       employee: "吴九",
@@ -277,7 +295,121 @@ const CRMAnalysis = () => {
       newPotential: 3,
       newInterest: 4,
       wonDeals: 0,
-      newRobotTests: 0
+      newRobotTests: 0,
+      monthlyPerformance: 35000,
+      lastMonthPerformance: 40000,
+      workScore: 90
+    },
+    {
+      employee: "钱十",
+      department: "一区一部",
+      wechatDeepChat: 14,
+      todayPerformance: 7200,
+      wechatFriends: 290,
+      touchCount: 42,
+      touchRate: "14.5%",
+      wechatDeep: 16,
+      deepChatRate: "38.1%",
+      newWechatFriends: 4,
+      momentsCount: 2,
+      momentsComments: 5,
+      momentsLikes: 22,
+      outboundCalls: 75,
+      callDuration: 220,
+      connectedCalls: 28,
+      connectionRate: "37.3%",
+      valid30s: 35,
+      valid60s: 25,
+      valid60sDuration: 170,
+      valid60sRate: "89.3%",
+      valid3min: 18,
+      valid10min: 12,
+      valid10minDuration: 140,
+      newKP: 4,
+      todayValidTotal: 42,
+      newOpportunities: 3,
+      newIntentions: 5,
+      newPotential: 7,
+      newInterest: 9,
+      wonDeals: 2,
+      newRobotTests: 1,
+      monthlyPerformance: 45000,
+      lastMonthPerformance: 38000,
+      workScore: 95
+    },
+    {
+      employee: "陈十一",
+      department: "二区一部",
+      wechatDeepChat: 9,
+      todayPerformance: 4800,
+      wechatFriends: 260,
+      touchCount: 36,
+      touchRate: "13.8%",
+      wechatDeep: 13,
+      deepChatRate: "36.1%",
+      newWechatFriends: 3,
+      momentsCount: 3,
+      momentsComments: 7,
+      momentsLikes: 19,
+      outboundCalls: 58,
+      callDuration: 165,
+      connectedCalls: 22,
+      connectionRate: "37.9%",
+      valid30s: 32,
+      valid60s: 19,
+      valid60sDuration: 145,
+      valid60sRate: "86.4%",
+      valid3min: 14,
+      valid10min: 7,
+      valid10minDuration: 95,
+      newKP: 3,
+      todayValidTotal: 31,
+      newOpportunities: 2,
+      newIntentions: 3,
+      newPotential: 5,
+      newInterest: 7,
+      wonDeals: 1,
+      newRobotTests: 0,
+      monthlyPerformance: 28000,
+      lastMonthPerformance: 24000,
+      workScore: 87
+    },
+    {
+      employee: "林十二",
+      department: "三区一部",
+      wechatDeepChat: 20,
+      todayPerformance: 5500,
+      wechatFriends: 350,
+      touchCount: 46,
+      touchRate: "13.1%",
+      wechatDeep: 22,
+      deepChatRate: "47.8%",
+      newWechatFriends: 5,
+      momentsCount: 3,
+      momentsComments: 9,
+      momentsLikes: 30,
+      outboundCalls: 42,
+      callDuration: 145,
+      connectedCalls: 16,
+      connectionRate: "38.1%",
+      valid30s: 18,
+      valid60s: 14,
+      valid60sDuration: 115,
+      valid60sRate: "87.5%",
+      valid3min: 9,
+      valid10min: 5,
+      valid10minDuration: 70,
+      newKP: 3,
+      todayValidTotal: 25,
+      newOpportunities: 2,
+      newIntentions: 3,
+      newPotential: 4,
+      newInterest: 6,
+      wonDeals: 1,
+      newRobotTests: 0,
+      monthlyPerformance: 42000,
+      lastMonthPerformance: 45000,
+      workScore: 91
     }
   ];
 
@@ -577,50 +709,84 @@ const CRMAnalysis = () => {
     newInterestFilter, wonDealsFilter, newRobotTestsFilter
   ]);
 
-  const departmentStats = {
-    "一区一部": {
-      failedEmployees: [
-        { name: "张三", metric: "30S有效外呼", value: 28, target: 40, status: "不达标" },
-        { name: "张三", metric: "朋友圈数", value: 3, target: 3, status: "达标" }
-      ]
-    },
-    "一区二部": {
-      failedEmployees: [
-        { name: "赵六", metric: "30S有效外呼", value: 10, target: 40, status: "不达标" },
-        { name: "赵六", metric: "朋友圈数", value: 1, target: 3, status: "不达标" }
-      ]
-    },
-    "二区一部": {
-      failedEmployees: [
-        { name: "李四", metric: "30S有效外呼", value: 20, target: 40, status: "不达标" },
-        { name: "李四", metric: "朋友圈数", value: 2, target: 3, status: "不达标" }
-      ]
-    },
-    "二区二部": {
-      failedEmployees: [
-        { name: "孙七", metric: "30S有效外呼", value: 18, target: 40, status: "不达标" },
-        { name: "孙七", metric: "朋友圈数", value: 3, target: 3, status: "达标" }
-      ]
-    },
-    "三区一部": {
-      failedEmployees: [
-        { name: "王五", metric: "微信深聊+1分钟电话", value: 15, target: 25, status: "不达标" },
-        { name: "王五", metric: "朋友圈数", value: 4, target: 3, status: "达标" }
-      ]
-    },
-    "三区二部": {
-      failedEmployees: [
-        { name: "周八", metric: "微信深聊+1分钟电话", value: 18, target: 25, status: "不达标" },
-        { name: "周八", metric: "朋友圈数", value: 4, target: 3, status: "达标" }
-      ]
-    },
-    "资源拓展部": {
-      failedEmployees: [
-        { name: "吴九", metric: "新增KP", value: 5, target: 4, status: "达标" },
-        { name: "吴九", metric: "30S有效外呼", value: 25, target: 40, status: "不达标" }
-      ]
-    }
-  };
+  // 新增：部门统计数据
+  const departmentStats = useMemo(() => {
+    const departments = ["一区一部", "一区二部", "二区一部", "二区二部", "三区一部", "三区二部", "资源拓展部"];
+    
+    return departments.map(dept => {
+      const deptEmployees = mockTableData.filter(emp => emp.department === dept);
+      
+      // 计算未完成考核指标的人员
+      const failedEmployees = deptEmployees.filter(emp => {
+        const hasHighPerformance = emp.monthlyPerformance >= 50000 || emp.lastMonthPerformance >= 50000;
+        
+        if (dept.includes("一区") || dept.includes("二区")) {
+          // 一区、二区考核指标
+          const momentsTarget = 3;
+          let valid30sTarget = 40;
+          if (emp.monthlyPerformance >= 50000) valid30sTarget = 20;
+          else if (emp.monthlyPerformance >= 30000) valid30sTarget = 30;
+          
+          return emp.momentsCount < momentsTarget || emp.valid30s < valid30sTarget;
+        } else if (dept.includes("三区")) {
+          // 三区考核指标
+          const momentsTarget = 3;
+          const wechatDeepTarget = hasHighPerformance ? 18 : 25;
+          
+          return emp.momentsCount < momentsTarget || emp.wechatDeepChat < wechatDeepTarget;
+        } else if (dept === "资源拓展部") {
+          // 资源拓展部考核指标（假设第二个月）
+          const newKPTarget = 5;
+          const valid30sTarget = hasHighPerformance ? 18 : 40;
+          
+          return emp.newKP < newKPTarget || emp.valid30s < valid30sTarget;
+        }
+        return false;
+      });
+      
+      // 工作评分TOP3
+      const top3Employees = deptEmployees
+        .sort((a, b) => b.workScore - a.workScore)
+        .slice(0, 3);
+      
+      return {
+        department: dept,
+        failedEmployees: failedEmployees.map(emp => {
+          const hasHighPerformance = emp.monthlyPerformance >= 50000 || emp.lastMonthPerformance >= 50000;
+          let failedMetrics = [];
+          
+          if (dept.includes("一区") || dept.includes("二区")) {
+            if (emp.momentsCount < 3) failedMetrics.push({ name: "朋友圈数", current: emp.momentsCount, target: 3 });
+            
+            let valid30sTarget = 40;
+            if (emp.monthlyPerformance >= 50000) valid30sTarget = 20;
+            else if (emp.monthlyPerformance >= 30000) valid30sTarget = 30;
+            
+            if (emp.valid30s < valid30sTarget) failedMetrics.push({ name: "30S有效外呼", current: emp.valid30s, target: valid30sTarget });
+          } else if (dept.includes("三区")) {
+            if (emp.momentsCount < 3) failedMetrics.push({ name: "朋友圈数", current: emp.momentsCount, target: 3 });
+            
+            const wechatDeepTarget = hasHighPerformance ? 18 : 25;
+            if (emp.wechatDeepChat < wechatDeepTarget) failedMetrics.push({ name: "微信深聊+1分钟电话", current: emp.wechatDeepChat, target: wechatDeepTarget });
+          } else if (dept === "资源拓展部") {
+            if (emp.newKP < 5) failedMetrics.push({ name: "新增KP", current: emp.newKP, target: 5 });
+            
+            const valid30sTarget = hasHighPerformance ? 18 : 40;
+            if (emp.valid30s < valid30sTarget) failedMetrics.push({ name: "30S有效外呼", current: emp.valid30s, target: valid30sTarget });
+          }
+          
+          return {
+            name: emp.employee,
+            metrics: failedMetrics
+          };
+        }),
+        top3Employees: top3Employees.map(emp => ({
+          name: emp.employee,
+          score: emp.workScore
+        }))
+      };
+    });
+  }, []);
 
   // 筛选组件
   const FilterSelect = ({ value, onValueChange, options, placeholder }: {
@@ -1248,30 +1414,69 @@ const CRMAnalysis = () => {
 
         <TabsContent value="dashboard">
           <div className="grid gap-6">
-            {Object.entries(departmentStats).map(([dept, data]) => (
-              <Card key={dept} className="p-6">
-                <h3 className="text-lg font-semibold mb-4">{dept}</h3>
-                <div className="space-y-4">
-                  <h4 className="text-sm font-medium text-gray-600">考核指标完成情况</h4>
-                  {data.failedEmployees.map((employee, index) => (
-                    <div key={index} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium">{employee.name} - {employee.metric}</span>
-                        <Badge variant={employee.status === "达标" ? "secondary" : "destructive"}>
-                          {employee.status}
-                        </Badge>
+            {departmentStats.map((dept) => (
+              <Card key={dept.department} className="p-6">
+                <h3 className="text-lg font-semibold mb-6">{dept.department}</h3>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* 考核指标未完成人员 */}
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-600 mb-4">考核指标未完成人员</h4>
+                    {dept.failedEmployees.length > 0 ? (
+                      <div className="space-y-4">
+                        {dept.failedEmployees.map((employee, empIndex) => (
+                          <div key={empIndex} className="space-y-2">
+                            <div className="font-medium text-sm">{employee.name}</div>
+                            {employee.metrics.map((metric, metricIndex) => (
+                              <div key={metricIndex} className="space-y-2">
+                                <div className="flex justify-between items-center text-xs">
+                                  <span>{metric.name}</span>
+                                  <span>{metric.current}/{metric.target}</span>
+                                </div>
+                                <div className="w-full bg-gray-200 rounded-full h-2">
+                                  <div 
+                                    className="bg-blue-500 h-2 rounded-full" 
+                                    style={{ width: `${Math.min((metric.current / metric.target) * 100, 100)}%` }}
+                                  ></div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ))}
                       </div>
-                      <div className="flex items-center gap-4">
-                        <Progress 
-                          value={(employee.value / employee.target) * 100} 
-                          className="flex-1 h-2"
-                        />
-                        <span className="text-sm text-gray-600">
-                          {employee.value}/{employee.target}
-                        </span>
+                    ) : (
+                      <div className="text-gray-500 text-sm">该部门所有员工均已完成考核指标</div>
+                    )}
+                  </div>
+
+                  {/* 工作评分TOP3 */}
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-600 mb-4">工作评分TOP3</h4>
+                    {dept.top3Employees.length > 0 ? (
+                      <div className="space-y-3">
+                        {dept.top3Employees.map((employee, index) => (
+                          <div key={index} className="flex items-center space-x-3">
+                            <div className="flex-1">
+                              <div className="flex justify-between items-center mb-1">
+                                <span className="text-sm font-medium">{employee.name}</span>
+                                <span className="text-sm text-gray-600">{employee.score}分</span>
+                              </div>
+                              <div className="w-full bg-gray-200 rounded-full h-6">
+                                <div 
+                                  className="bg-blue-500 h-6 rounded-full flex items-center justify-end pr-2" 
+                                  style={{ width: `${employee.score}%` }}
+                                >
+                                  <span className="text-white text-xs font-medium">{employee.score}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    </div>
-                  ))}
+                    ) : (
+                      <div className="text-gray-500 text-sm">暂无评分数据</div>
+                    )}
+                  </div>
                 </div>
               </Card>
             ))}
