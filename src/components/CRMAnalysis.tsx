@@ -151,7 +151,7 @@ const CRMAnalysis = () => {
       wechatFriends: 180,
       touchCount: 22,
       touchRate: "12.2%",
-            wechatDeep: 8,
+      wechatDeep: 8,
       deepChatRate: "36.4%",
       newWechatFriends: 2,
       momentsCount: 1,
@@ -288,211 +288,275 @@ const CRMAnalysis = () => {
 
   const filteredData = useMemo(() => {
     return mockTableData.filter(item => {
+      // 员工部门筛选
       if (employeeFilter !== "all" && item.department !== employeeFilter) return false;
       
+      // 微信深聊+1分钟电话筛选
       if (wechatDeepChatFilter !== "all") {
         const value = item.wechatDeepChat;
-        if (wechatDeepChatFilter === "below-10" && value >= 10) return false;
-        if (wechatDeepChatFilter === "10-15" && (value < 10 || value > 15)) return false;
-        if (wechatDeepChatFilter === "above-15" && value <= 15) return false;
+        if (wechatDeepChatFilter === "0-5" && (value < 0 || value > 5)) return false;
+        if (wechatDeepChatFilter === "6-10" && (value < 6 || value > 10)) return false;
+        if (wechatDeepChatFilter === "11-15" && (value < 11 || value > 15)) return false;
+        if (wechatDeepChatFilter === "16-20" && (value < 16 || value > 20)) return false;
+        if (wechatDeepChatFilter === "above-20" && value <= 20) return false;
       }
       
+      // 今日业绩筛选
       if (performanceFilter !== "all") {
         const value = item.todayPerformance;
-        if (performanceFilter === "below-3000" && value >= 3000) return false;
-        if (performanceFilter === "3000-6000" && (value < 3000 || value > 6000)) return false;
-        if (performanceFilter === "above-6000" && value <= 6000) return false;
+        if (performanceFilter === "0-2000" && (value < 0 || value > 2000)) return false;
+        if (performanceFilter === "2001-4000" && (value < 2001 || value > 4000)) return false;
+        if (performanceFilter === "4001-6000" && (value < 4001 || value > 6000)) return false;
+        if (performanceFilter === "6001-8000" && (value < 6001 || value > 8000)) return false;
+        if (performanceFilter === "above-8000" && value <= 8000) return false;
       }
       
+      // 微信好友总数筛选
       if (wechatFriendsFilter !== "all") {
         const value = item.wechatFriends;
-        if (wechatFriendsFilter === "below-200" && value >= 200) return false;
-        if (wechatFriendsFilter === "200-300" && (value < 200 || value > 300)) return false;
-        if (wechatFriendsFilter === "above-300" && value <= 300) return false;
+        if (wechatFriendsFilter === "0-100" && (value < 0 || value > 100)) return false;
+        if (wechatFriendsFilter === "101-200" && (value < 101 || value > 200)) return false;
+        if (wechatFriendsFilter === "201-300" && (value < 201 || value > 300)) return false;
+        if (wechatFriendsFilter === "301-400" && (value < 301 || value > 400)) return false;
+        if (wechatFriendsFilter === "above-400" && value <= 400) return false;
       }
       
+      // 触达数量筛选
       if (touchCountFilter !== "all") {
         const value = item.touchCount;
-        if (touchCountFilter === "below-30" && value >= 30) return false;
-        if (touchCountFilter === "30-45" && (value < 30 || value > 45)) return false;
-        if (touchCountFilter === "above-45" && value <= 45) return false;
+        if (touchCountFilter === "0-20" && (value < 0 || value > 20)) return false;
+        if (touchCountFilter === "21-35" && (value < 21 || value > 35)) return false;
+        if (touchCountFilter === "36-50" && (value < 36 || value > 50)) return false;
+        if (touchCountFilter === "above-50" && value <= 50) return false;
       }
 
+      // 触达率筛选
       if (touchRateFilter !== "all") {
         const value = parsePercentage(item.touchRate);
-        if (touchRateFilter === "below-13" && value >= 13) return false;
-        if (touchRateFilter === "13-14" && (value < 13 || value > 14)) return false;
-        if (touchRateFilter === "above-14" && value <= 14) return false;
+        if (touchRateFilter === "0-10" && (value < 0 || value > 10)) return false;
+        if (touchRateFilter === "11-13" && (value < 11 || value > 13)) return false;
+        if (touchRateFilter === "14-15" && (value < 14 || value > 15)) return false;
+        if (touchRateFilter === "above-15" && value <= 15) return false;
       }
 
+      // 微信深聊筛选
       if (wechatDeepFilter !== "all") {
         const value = item.wechatDeep;
-        if (wechatDeepFilter === "below-10" && value >= 10) return false;
-        if (wechatDeepFilter === "10-15" && (value < 10 || value > 15)) return false;
-        if (wechatDeepFilter === "above-15" && value <= 15) return false;
+        if (wechatDeepFilter === "0-5" && (value < 0 || value > 5)) return false;
+        if (wechatDeepFilter === "6-10" && (value < 6 || value > 10)) return false;
+        if (wechatDeepFilter === "11-15" && (value < 11 || value > 15)) return false;
+        if (wechatDeepFilter === "16-20" && (value < 16 || value > 20)) return false;
+        if (wechatDeepFilter === "above-20" && value <= 20) return false;
       }
 
+      // 深聊/沟通数筛选
       if (deepChatRateFilter !== "all") {
         const value = parsePercentage(item.deepChatRate);
-        if (deepChatRateFilter === "below-35" && value >= 35) return false;
-        if (deepChatRateFilter === "35-40" && (value < 35 || value > 40)) return false;
+        if (deepChatRateFilter === "0-20" && (value < 0 || value > 20)) return false;
+        if (deepChatRateFilter === "21-30" && (value < 21 || value > 30)) return false;
+        if (deepChatRateFilter === "31-40" && (value < 31 || value > 40)) return false;
         if (deepChatRateFilter === "above-40" && value <= 40) return false;
       }
 
+      // 新增微信好友数筛选
       if (newWechatFriendsFilter !== "all") {
         const value = item.newWechatFriends;
-        if (newWechatFriendsFilter === "below-3" && value >= 3) return false;
+        if (newWechatFriendsFilter === "0-2" && (value < 0 || value > 2)) return false;
         if (newWechatFriendsFilter === "3-5" && (value < 3 || value > 5)) return false;
-        if (newWechatFriendsFilter === "above-5" && value <= 5) return false;
+        if (newWechatFriendsFilter === "6-8" && (value < 6 || value > 8)) return false;
+        if (newWechatFriendsFilter === "above-8" && value <= 8) return false;
       }
 
+      // 朋友圈数筛选
       if (momentsCountFilter !== "all") {
         const value = item.momentsCount;
-        if (momentsCountFilter === "below-2" && value >= 2) return false;
+        if (momentsCountFilter === "0-1" && (value < 0 || value > 1)) return false;
         if (momentsCountFilter === "2-3" && (value < 2 || value > 3)) return false;
-        if (momentsCountFilter === "above-3" && value <= 3) return false;
+        if (momentsCountFilter === "4-5" && (value < 4 || value > 5)) return false;
+        if (momentsCountFilter === "above-5" && value <= 5) return false;
       }
 
+      // 朋友圈评论数筛选
       if (momentsCommentsFilter !== "all") {
         const value = item.momentsComments;
-        if (momentsCommentsFilter === "below-5" && value >= 5) return false;
-        if (momentsCommentsFilter === "5-8" && (value < 5 || value > 8)) return false;
-        if (momentsCommentsFilter === "above-8" && value <= 8) return false;
+        if (momentsCommentsFilter === "0-3" && (value < 0 || value > 3)) return false;
+        if (momentsCommentsFilter === "4-7" && (value < 4 || value > 7)) return false;
+        if (momentsCommentsFilter === "8-12" && (value < 8 || value > 12)) return false;
+        if (momentsCommentsFilter === "above-12" && value <= 12) return false;
       }
 
+      // 朋友圈点赞数筛选
       if (momentsLikesFilter !== "all") {
         const value = item.momentsLikes;
-        if (momentsLikesFilter === "below-15" && value >= 15) return false;
-        if (momentsLikesFilter === "15-25" && (value < 15 || value > 25)) return false;
-        if (momentsLikesFilter === "above-25" && value <= 25) return false;
+        if (momentsLikesFilter === "0-10" && (value < 0 || value > 10)) return false;
+        if (momentsLikesFilter === "11-20" && (value < 11 || value > 20)) return false;
+        if (momentsLikesFilter === "21-30" && (value < 21 || value > 30)) return false;
+        if (momentsLikesFilter === "above-30" && value <= 30) return false;
       }
       
+      // 外呼筛选
       if (outboundCallsFilter !== "all") {
         const value = item.outboundCalls;
-        if (outboundCallsFilter === "below-50" && value >= 50) return false;
-        if (outboundCallsFilter === "50-70" && (value < 50 || value > 70)) return false;
+        if (outboundCallsFilter === "0-30" && (value < 0 || value > 30)) return false;
+        if (outboundCallsFilter === "31-50" && (value < 31 || value > 50)) return false;
+        if (outboundCallsFilter === "51-70" && (value < 51 || value > 70)) return false;
         if (outboundCallsFilter === "above-70" && value <= 70) return false;
       }
 
+      // 外呼时长筛选
       if (callDurationFilter !== "all") {
         const value = item.callDuration;
-        if (callDurationFilter === "below-120" && value >= 120) return false;
-        if (callDurationFilter === "120-180" && (value < 120 || value > 180)) return false;
-        if (callDurationFilter === "above-180" && value <= 180) return false;
+        if (callDurationFilter === "0-100" && (value < 0 || value > 100)) return false;
+        if (callDurationFilter === "101-150" && (value < 101 || value > 150)) return false;
+        if (callDurationFilter === "151-200" && (value < 151 || value > 200)) return false;
+        if (callDurationFilter === "above-200" && value <= 200) return false;
       }
 
+      // 接通数筛选
       if (connectedCallsFilter !== "all") {
         const value = item.connectedCalls;
-        if (connectedCallsFilter === "below-20" && value >= 20) return false;
-        if (connectedCallsFilter === "20-30" && (value < 20 || value > 30)) return false;
+        if (connectedCallsFilter === "0-10" && (value < 0 || value > 10)) return false;
+        if (connectedCallsFilter === "11-20" && (value < 11 || value > 20)) return false;
+        if (connectedCallsFilter === "21-30" && (value < 21 || value > 30)) return false;
         if (connectedCallsFilter === "above-30" && value <= 30) return false;
       }
 
+      // 接通率筛选
       if (connectionRateFilter !== "all") {
         const value = parsePercentage(item.connectionRate);
-        if (connectionRateFilter === "below-35" && value >= 35) return false;
-        if (connectionRateFilter === "35-40" && (value < 35 || value > 40)) return false;
-        if (connectionRateFilter === "above-40" && value <= 40) return false;
+        if (connectionRateFilter === "0-25" && (value < 0 || value > 25)) return false;
+        if (connectionRateFilter === "26-35" && (value < 26 || value > 35)) return false;
+        if (connectionRateFilter === "36-45" && (value < 36 || value > 45)) return false;
+        if (connectionRateFilter === "above-45" && value <= 45) return false;
       }
       
+      // 30S有效外呼筛选
       if (valid30sFilter !== "all") {
         const value = item.valid30s;
-        if (valid30sFilter === "below-15" && value >= 15) return false;
-        if (valid30sFilter === "15-25" && (value < 15 || value > 25)) return false;
-        if (valid30sFilter === "above-25" && value <= 25) return false;
+        if (valid30sFilter === "0-10" && (value < 0 || value > 10)) return false;
+        if (valid30sFilter === "11-20" && (value < 11 || value > 20)) return false;
+        if (valid30sFilter === "21-30" && (value < 21 || value > 30)) return false;
+        if (valid30sFilter === "above-30" && value <= 30) return false;
       }
 
+      // 60S有效外呼筛选
       if (valid60sFilter !== "all") {
         const value = item.valid60s;
-        if (valid60sFilter === "below-12" && value >= 12) return false;
-        if (valid60sFilter === "12-20" && (value < 12 || value > 20)) return false;
-        if (valid60sFilter === "above-20" && value <= 20) return false;
+        if (valid60sFilter === "0-8" && (value < 0 || value > 8)) return false;
+        if (valid60sFilter === "9-15" && (value < 9 || value > 15)) return false;
+        if (valid60sFilter === "16-22" && (value < 16 || value > 22)) return false;
+        if (valid60sFilter === "above-22" && value <= 22) return false;
       }
 
+      // 60S时长筛选
       if (valid60sDurationFilter !== "all") {
         const value = item.valid60sDuration;
-        if (valid60sDurationFilter === "below-100" && value >= 100) return false;
-        if (valid60sDurationFilter === "100-150" && (value < 100 || value > 150)) return false;
-        if (valid60sDurationFilter === "above-150" && value <= 150) return false;
+        if (valid60sDurationFilter === "0-80" && (value < 0 || value > 80)) return false;
+        if (valid60sDurationFilter === "81-130" && (value < 81 || value > 130)) return false;
+        if (valid60sDurationFilter === "131-180" && (value < 131 || value > 180)) return false;
+        if (valid60sDurationFilter === "above-180" && value <= 180) return false;
       }
 
+      // 60S/接通率筛选
       if (valid60sRateFilter !== "all") {
         const value = parsePercentage(item.valid60sRate);
-        if (valid60sRateFilter === "below-65" && value >= 65) return false;
-        if (valid60sRateFilter === "65-70" && (value < 65 || value > 70)) return false;
-        if (valid60sRateFilter === "above-70" && value <= 70) return false;
+        if (valid60sRateFilter === "0-50" && (value < 0 || value > 50)) return false;
+        if (valid60sRateFilter === "51-65" && (value < 51 || value > 65)) return false;
+        if (valid60sRateFilter === "66-75" && (value < 66 || value > 75)) return false;
+        if (valid60sRateFilter === "above-75" && value <= 75) return false;
       }
 
+      // 3分钟有效外呼筛选
       if (valid3minFilter !== "all") {
         const value = item.valid3min;
-        if (valid3minFilter === "below-8" && value >= 8) return false;
-        if (valid3minFilter === "8-12" && (value < 8 || value > 12)) return false;
-        if (valid3minFilter === "above-12" && value <= 12) return false;
+        if (valid3minFilter === "0-5" && (value < 0 || value > 5)) return false;
+        if (valid3minFilter === "6-10" && (value < 6 || value > 10)) return false;
+        if (valid3minFilter === "11-15" && (value < 11 || value > 15)) return false;
+        if (valid3minFilter === "above-15" && value <= 15) return false;
       }
 
+      // 10分钟有效外呼筛选
       if (valid10minFilter !== "all") {
         const value = item.valid10min;
-        if (valid10minFilter === "below-4" && value >= 4) return false;
-        if (valid10minFilter === "4-6" && (value < 4 || value > 6)) return false;
-        if (valid10minFilter === "above-6" && value <= 6) return false;
+        if (valid10minFilter === "0-2" && (value < 0 || value > 2)) return false;
+        if (valid10minFilter === "3-5" && (value < 3 || value > 5)) return false;
+        if (valid10minFilter === "6-8" && (value < 6 || value > 8)) return false;
+        if (valid10minFilter === "above-8" && value <= 8) return false;
       }
 
+      // 10分钟时长筛选
       if (valid10minDurationFilter !== "all") {
         const value = item.valid10minDuration;
-        if (valid10minDurationFilter === "below-60" && value >= 60) return false;
-        if (valid10minDurationFilter === "60-90" && (value < 60 || value > 90)) return false;
-        if (valid10minDurationFilter === "above-90" && value <= 90) return false;
+        if (valid10minDurationFilter === "0-40" && (value < 0 || value > 40)) return false;
+        if (valid10minDurationFilter === "41-80" && (value < 41 || value > 80)) return false;
+        if (valid10minDurationFilter === "81-120" && (value < 81 || value > 120)) return false;
+        if (valid10minDurationFilter === "above-120" && value <= 120) return false;
       }
 
+      // 新增KP筛选
       if (newKPFilter !== "all") {
         const value = item.newKP;
-        if (newKPFilter === "below-2" && value >= 2) return false;
+        if (newKPFilter === "0-1" && (value < 0 || value > 1)) return false;
         if (newKPFilter === "2-3" && (value < 2 || value > 3)) return false;
-        if (newKPFilter === "above-3" && value <= 3) return false;
+        if (newKPFilter === "4-5" && (value < 4 || value > 5)) return false;
+        if (newKPFilter === "above-5" && value <= 5) return false;
       }
 
+      // 今日有效小计数筛选
       if (todayValidTotalFilter !== "all") {
         const value = item.todayValidTotal;
-        if (todayValidTotalFilter === "below-20" && value >= 20) return false;
-        if (todayValidTotalFilter === "20-30" && (value < 20 || value > 30)) return false;
-        if (todayValidTotalFilter === "above-30" && value <= 30) return false;
+        if (todayValidTotalFilter === "0-15" && (value < 0 || value > 15)) return false;
+        if (todayValidTotalFilter === "16-25" && (value < 16 || value > 25)) return false;
+        if (todayValidTotalFilter === "26-35" && (value < 26 || value > 35)) return false;
+        if (todayValidTotalFilter === "above-35" && value <= 35) return false;
       }
 
+      // 新增商机数筛选
       if (newOpportunitiesFilter !== "all") {
         const value = item.newOpportunities;
         if (newOpportunitiesFilter === "0" && value !== 0) return false;
         if (newOpportunitiesFilter === "1-2" && (value < 1 || value > 2)) return false;
-        if (newOpportunitiesFilter === "above-2" && value <= 2) return false;
+        if (newOpportunitiesFilter === "3-4" && (value < 3 || value > 4)) return false;
+        if (newOpportunitiesFilter === "above-4" && value <= 4) return false;
       }
 
+      // 新增意向筛选
       if (newIntentionsFilter !== "all") {
         const value = item.newIntentions;
-        if (newIntentionsFilter === "below-2" && value >= 2) return false;
+        if (newIntentionsFilter === "0-1" && (value < 0 || value > 1)) return false;
         if (newIntentionsFilter === "2-3" && (value < 2 || value > 3)) return false;
-        if (newIntentionsFilter === "above-3" && value <= 3) return false;
+        if (newIntentionsFilter === "4-5" && (value < 4 || value > 5)) return false;
+        if (newIntentionsFilter === "above-5" && value <= 5) return false;
       }
 
+      // 新增潜在筛选
       if (newPotentialFilter !== "all") {
         const value = item.newPotential;
-        if (newPotentialFilter === "below-3" && value >= 3) return false;
+        if (newPotentialFilter === "0-2" && (value < 0 || value > 2)) return false;
         if (newPotentialFilter === "3-5" && (value < 3 || value > 5)) return false;
-        if (newPotentialFilter === "above-5" && value <= 5) return false;
+        if (newPotentialFilter === "6-8" && (value < 6 || value > 8)) return false;
+        if (newPotentialFilter === "above-8" && value <= 8) return false;
       }
 
+      // 新增兴趣筛选
       if (newInterestFilter !== "all") {
         const value = item.newInterest;
-        if (newInterestFilter === "below-5" && value >= 5) return false;
-        if (newInterestFilter === "5-7" && (value < 5 || value > 7)) return false;
-        if (newInterestFilter === "above-7" && value <= 7) return false;
+        if (newInterestFilter === "0-3" && (value < 0 || value > 3)) return false;
+        if (newInterestFilter === "4-6" && (value < 4 || value > 6)) return false;
+        if (newInterestFilter === "7-9" && (value < 7 || value > 9)) return false;
+        if (newInterestFilter === "above-9" && value <= 9) return false;
       }
 
+      // 赢单筛选
       if (wonDealsFilter !== "all") {
         const value = item.wonDeals;
         if (wonDealsFilter === "0" && value !== 0) return false;
         if (wonDealsFilter === "1" && value !== 1) return false;
-        if (wonDealsFilter === "above-1" && value <= 1) return false;
+        if (wonDealsFilter === "2" && value !== 2) return false;
+        if (wonDealsFilter === "above-2" && value <= 2) return false;
       }
 
+      // 订单新增机器人测试筛选
       if (newRobotTestsFilter !== "all") {
         const value = item.newRobotTests;
         if (newRobotTestsFilter === "0" && value !== 0) return false;
@@ -502,7 +566,16 @@ const CRMAnalysis = () => {
 
       return true;
     });
-  }, [employeeFilter, wechatDeepChatFilter, performanceFilter, wechatFriendsFilter, touchCountFilter, touchRateFilter, wechatDeepFilter, deepChatRateFilter, newWechatFriendsFilter, momentsCountFilter, momentsCommentsFilter, momentsLikesFilter, outboundCallsFilter, callDurationFilter, connectedCallsFilter, connectionRateFilter, valid30sFilter, valid60sFilter, valid60sDurationFilter, valid60sRateFilter, valid3minFilter, valid10minFilter, valid10minDurationFilter, newKPFilter, todayValidTotalFilter, newOpportunitiesFilter, newIntentionsFilter, newPotentialFilter, newInterestFilter, wonDealsFilter, newRobotTestsFilter]);
+  }, [
+    employeeFilter, wechatDeepChatFilter, performanceFilter, wechatFriendsFilter, 
+    touchCountFilter, touchRateFilter, wechatDeepFilter, deepChatRateFilter, 
+    newWechatFriendsFilter, momentsCountFilter, momentsCommentsFilter, momentsLikesFilter,
+    outboundCallsFilter, callDurationFilter, connectedCallsFilter, connectionRateFilter,
+    valid30sFilter, valid60sFilter, valid60sDurationFilter, valid60sRateFilter,
+    valid3minFilter, valid10minFilter, valid10minDurationFilter, newKPFilter,
+    todayValidTotalFilter, newOpportunitiesFilter, newIntentionsFilter, newPotentialFilter,
+    newInterestFilter, wonDealsFilter, newRobotTestsFilter
+  ]);
 
   const departmentStats = {
     "一区一部": {
@@ -549,6 +622,7 @@ const CRMAnalysis = () => {
     }
   };
 
+  // 筛选组件
   const FilterSelect = ({ value, onValueChange, options, placeholder }: {
     value: string;
     onValueChange: (value: string) => void;
@@ -556,13 +630,12 @@ const CRMAnalysis = () => {
     placeholder: string;
   }) => (
     <Select value={value} onValueChange={onValueChange}>
-      <SelectTrigger className="w-32 h-8">
+      <SelectTrigger className="w-24 h-7 text-xs">
         <SelectValue placeholder={placeholder} />
-        <ChevronDown className="h-3 w-3" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="z-50">
         {options.map(option => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem key={option.value} value={option.value} className="text-xs">
             {option.label}
           </SelectItem>
         ))}
@@ -591,14 +664,14 @@ const CRMAnalysis = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="sticky left-0 bg-white min-w-[100px]">
-                      <div className="flex flex-col gap-1">
-                        <span>员工</span>
+                    <TableHead className="sticky left-0 bg-white min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">员工</div>
                         <FilterSelect
                           value={employeeFilter}
                           onValueChange={setEmployeeFilter}
                           options={[
-                            { value: "all", label: "全部部门" },
+                            { value: "all", label: "全部" },
                             { value: "一区一部", label: "一区一部" },
                             { value: "一区二部", label: "一区二部" },
                             { value: "二区一部", label: "二区一部" },
@@ -611,481 +684,514 @@ const CRMAnalysis = () => {
                         />
                       </div>
                     </TableHead>
-                    <TableHead className="min-w-[120px]">
-                      <div className="flex flex-col gap-1">
-                        <span>微信深聊+1分钟电话</span>
+                    <TableHead className="min-w-[140px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">微信深聊+1分钟电话</div>
                         <FilterSelect
                           value={wechatDeepChatFilter}
                           onValueChange={setWechatDeepChatFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-10", label: "10以下" },
-                            { value: "10-15", label: "10-15" },
-                            { value: "above-15", label: "15以上" }
+                            { value: "0-5", label: "0-5" },
+                            { value: "6-10", label: "6-10" },
+                            { value: "11-15", label: "11-15" },
+                            { value: "16-20", label: "16-20" },
+                            { value: "above-20", label: "20+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
                     <TableHead className="min-w-[100px]">
-                      <div className="flex flex-col gap-1">
-                        <span>今日业绩</span>
+                      <div className="space-y-1">
+                        <div className="font-medium">今日业绩</div>
                         <FilterSelect
                           value={performanceFilter}
                           onValueChange={setPerformanceFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-3000", label: "3000以下" },
-                            { value: "3000-6000", label: "3000-6000" },
-                            { value: "above-6000", label: "6000以上" }
+                            { value: "0-2000", label: "0-2000" },
+                            { value: "2001-4000", label: "2001-4000" },
+                            { value: "4001-6000", label: "4001-6000" },
+                            { value: "6001-8000", label: "6001-8000" },
+                            { value: "above-8000", label: "8000+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
                     <TableHead className="min-w-[120px]">
-                      <div className="flex flex-col gap-1">
-                        <span>微信好友总数</span>
+                      <div className="space-y-1">
+                        <div className="font-medium">微信好友总数</div>
                         <FilterSelect
                           value={wechatFriendsFilter}
                           onValueChange={setWechatFriendsFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-200", label: "200以下" },
-                            { value: "200-300", label: "200-300" },
-                            { value: "above-300", label: "300以上" }
+                            { value: "0-100", label: "0-100" },
+                            { value: "101-200", label: "101-200" },
+                            { value: "201-300", label: "201-300" },
+                            { value: "301-400", label: "301-400" },
+                            { value: "above-400", label: "400+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
                     <TableHead className="min-w-[100px]">
-                      <div className="flex flex-col gap-1">
-                        <span>触达数量</span>
+                      <div className="space-y-1">
+                        <div className="font-medium">触达数量</div>
                         <FilterSelect
                           value={touchCountFilter}
                           onValueChange={setTouchCountFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-30", label: "30以下" },
-                            { value: "30-45", label: "30-45" },
-                            { value: "above-45", label: "45以上" }
+                            { value: "0-20", label: "0-20" },
+                            { value: "21-35", label: "21-35" },
+                            { value: "36-50", label: "36-50" },
+                            { value: "above-50", label: "50+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>触达/总数</span>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">触达/总数</div>
                         <FilterSelect
                           value={touchRateFilter}
                           onValueChange={setTouchRateFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-13", label: "13%以下" },
-                            { value: "13-14", label: "13%-14%" },
-                            { value: "above-14", label: "14%以上" }
+                            { value: "0-10", label: "0-10%" },
+                            { value: "11-13", label: "11-13%" },
+                            { value: "14-15", label: "14-15%" },
+                            { value: "above-15", label: "15%+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>微信深聊</span>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">微信深聊</div>
                         <FilterSelect
                           value={wechatDeepFilter}
                           onValueChange={setWechatDeepFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-10", label: "10以下" },
-                            { value: "10-15", label: "10-15" },
-                            { value: "above-15", label: "15以上" }
+                            { value: "0-5", label: "0-5" },
+                            { value: "6-10", label: "6-10" },
+                            { value: "11-15", label: "11-15" },
+                            { value: "16-20", label: "16-20" },
+                            { value: "above-20", label: "20+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>深聊/沟通数</span>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">深聊/沟通数</div>
                         <FilterSelect
                           value={deepChatRateFilter}
                           onValueChange={setDeepChatRateFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-35", label: "35%以下" },
-                            { value: "35-40", label: "35%-40%" },
-                            { value: "above-40", label: "40%以上" }
+                            { value: "0-20", label: "0-20%" },
+                            { value: "21-30", label: "21-30%" },
+                            { value: "31-40", label: "31-40%" },
+                            { value: "above-40", label: "40%+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>新增微信好友数</span>
+                    <TableHead className="min-w-[130px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">新增微信好友数</div>
                         <FilterSelect
                           value={newWechatFriendsFilter}
                           onValueChange={setNewWechatFriendsFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-3", label: "3以下" },
+                            { value: "0-2", label: "0-2" },
                             { value: "3-5", label: "3-5" },
-                            { value: "above-5", label: "5以上" }
+                            { value: "6-8", label: "6-8" },
+                            { value: "above-8", label: "8+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>朋友圈数</span>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">朋友圈数</div>
                         <FilterSelect
                           value={momentsCountFilter}
                           onValueChange={setMomentsCountFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-2", label: "2以下" },
+                            { value: "0-1", label: "0-1" },
                             { value: "2-3", label: "2-3" },
-                            { value: "above-3", label: "3以上" }
+                            { value: "4-5", label: "4-5" },
+                            { value: "above-5", label: "5+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>朋友圈评论数</span>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">朋友圈评论数</div>
                         <FilterSelect
                           value={momentsCommentsFilter}
                           onValueChange={setMomentsCommentsFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-5", label: "5以下" },
-                            { value: "5-8", label: "5-8" },
-                            { value: "above-8", label: "8以上" }
+                            { value: "0-3", label: "0-3" },
+                            { value: "4-7", label: "4-7" },
+                            { value: "8-12", label: "8-12" },
+                            { value: "above-12", label: "12+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>朋友圈点赞数</span>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">朋友圈点赞数</div>
                         <FilterSelect
                           value={momentsLikesFilter}
                           onValueChange={setMomentsLikesFilter}
-                                                    options={[
+                          options={[
                             { value: "all", label: "全部" },
-                            { value: "below-15", label: "15以下" },
-                            { value: "15-25", label: "15-25" },
-                            { value: "above-25", label: "25以上" }
+                            { value: "0-10", label: "0-10" },
+                            { value: "11-20", label: "11-20" },
+                            { value: "21-30", label: "21-30" },
+                            { value: "above-30", label: "30+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
                     <TableHead className="min-w-[80px]">
-                      <div className="flex flex-col gap-1">
-                        <span>外呼</span>
+                      <div className="space-y-1">
+                        <div className="font-medium">外呼</div>
                         <FilterSelect
                           value={outboundCallsFilter}
                           onValueChange={setOutboundCallsFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-50", label: "50以下" },
-                            { value: "50-70", label: "50-70" },
-                            { value: "above-70", label: "70以上" }
-                          ]}
-                          placeholder="全部"
-                        />
-                      </div>
-                    </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>外呼时长(分钟)</span>
-                        <FilterSelect
-                          value={callDurationFilter}
-                          onValueChange={setCallDurationFilter}
-                          options={[
-                            { value: "all", label: "全部" },
-                            { value: "below-120", label: "120以下" },
-                            { value: "120-180", label: "120-180" },
-                            { value: "above-180", label: "180以上" }
-                          ]}
-                          placeholder="全部"
-                        />
-                      </div>
-                    </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>接通数</span>
-                        <FilterSelect
-                          value={connectedCallsFilter}
-                          onValueChange={setConnectedCallsFilter}
-                          options={[
-                            { value: "all", label: "全部" },
-                            { value: "below-20", label: "20以下" },
-                            { value: "20-30", label: "20-30" },
-                            { value: "above-30", label: "30以上" }
-                          ]}
-                          placeholder="全部"
-                        />
-                      </div>
-                    </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>接通率</span>
-                        <FilterSelect
-                          value={connectionRateFilter}
-                          onValueChange={setConnectionRateFilter}
-                          options={[
-                            { value: "all", label: "全部" },
-                            { value: "below-35", label: "35%以下" },
-                            { value: "35-40", label: "35%-40%" },
-                            { value: "above-40", label: "40%以上" }
+                            { value: "0-30", label: "0-30" },
+                            { value: "31-50", label: "31-50" },
+                            { value: "51-70", label: "51-70" },
+                            { value: "above-70", label: "70+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
                     <TableHead className="min-w-[120px]">
-                      <div className="flex flex-col gap-1">
-                        <span>30S有效外呼</span>
+                      <div className="space-y-1">
+                        <div className="font-medium">外呼时长(分钟)</div>
+                        <FilterSelect
+                          value={callDurationFilter}
+                          onValueChange={setCallDurationFilter}
+                          options={[
+                            { value: "all", label: "全部" },
+                            { value: "0-100", label: "0-100" },
+                            { value: "101-150", label: "101-150" },
+                            { value: "151-200", label: "151-200" },
+                            { value: "above-200", label: "200+" }
+                          ]}
+                          placeholder="全部"
+                        />
+                      </div>
+                    </TableHead>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">接通数</div>
+                        <FilterSelect
+                          value={connectedCallsFilter}
+                          onValueChange={setConnectedCallsFilter}
+                          options={[
+                            { value: "all", label: "全部" },
+                            { value: "0-10", label: "0-10" },
+                            { value: "11-20", label: "11-20" },
+                            { value: "21-30", label: "21-30" },
+                            { value: "above-30", label: "30+" }
+                          ]}
+                          placeholder="全部"
+                        />
+                      </div>
+                    </TableHead>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">接通率</div>
+                        <FilterSelect
+                          value={connectionRateFilter}
+                          onValueChange={setConnectionRateFilter}
+                          options={[
+                            { value: "all", label: "全部" },
+                            { value: "0-25", label: "0-25%" },
+                            { value: "26-35", label: "26-35%" },
+                            { value: "36-45", label: "36-45%" },
+                            { value: "above-45", label: "45%+" }
+                          ]}
+                          placeholder="全部"
+                        />
+                      </div>
+                    </TableHead>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">30S有效外呼</div>
                         <FilterSelect
                           value={valid30sFilter}
                           onValueChange={setValid30sFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-15", label: "15以下" },
-                            { value: "15-25", label: "15-25" },
-                            { value: "above-25", label: "25以上" }
+                            { value: "0-10", label: "0-10" },
+                            { value: "11-20", label: "11-20" },
+                            { value: "21-30", label: "21-30" },
+                            { value: "above-30", label: "30+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>60S有效外呼</span>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">60S有效外呼</div>
                         <FilterSelect
                           value={valid60sFilter}
                           onValueChange={setValid60sFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-12", label: "12以下" },
-                            { value: "12-20", label: "12-20" },
-                            { value: "above-20", label: "20以上" }
+                            { value: "0-8", label: "0-8" },
+                            { value: "9-15", label: "9-15" },
+                            { value: "16-22", label: "16-22" },
+                            { value: "above-22", label: "22+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>60S时长(分钟)</span>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">60S时长(分钟)</div>
                         <FilterSelect
                           value={valid60sDurationFilter}
                           onValueChange={setValid60sDurationFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-100", label: "100以下" },
-                            { value: "100-150", label: "100-150" },
-                            { value: "above-150", label: "150以上" }
+                            { value: "0-80", label: "0-80" },
+                            { value: "81-130", label: "81-130" },
+                            { value: "131-180", label: "131-180" },
+                            { value: "above-180", label: "180+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>60S/接通率</span>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">60S/接通率</div>
                         <FilterSelect
                           value={valid60sRateFilter}
                           onValueChange={setValid60sRateFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-65", label: "65%以下" },
-                            { value: "65-70", label: "65%-70%" },
-                            { value: "above-70", label: "70%以上" }
+                            { value: "0-50", label: "0-50%" },
+                            { value: "51-65", label: "51-65%" },
+                            { value: "66-75", label: "66-75%" },
+                            { value: "above-75", label: "75%+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>3分钟有效外呼</span>
+                    <TableHead className="min-w-[130px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">3分钟有效外呼</div>
                         <FilterSelect
                           value={valid3minFilter}
                           onValueChange={setValid3minFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-8", label: "8以下" },
-                            { value: "8-12", label: "8-12" },
-                            { value: "above-12", label: "12以上" }
+                            { value: "0-5", label: "0-5" },
+                            { value: "6-10", label: "6-10" },
+                            { value: "11-15", label: "11-15" },
+                            { value: "above-15", label: "15+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>10分钟有效外呼</span>
+                    <TableHead className="min-w-[140px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">10分钟有效外呼</div>
                         <FilterSelect
                           value={valid10minFilter}
                           onValueChange={setValid10minFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-4", label: "4以下" },
-                            { value: "4-6", label: "4-6" },
-                            { value: "above-6", label: "6以上" }
+                            { value: "0-2", label: "0-2" },
+                            { value: "3-5", label: "3-5" },
+                            { value: "6-8", label: "6-8" },
+                            { value: "above-8", label: "8+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>10分钟时长</span>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">10分钟时长</div>
                         <FilterSelect
                           value={valid10minDurationFilter}
                           onValueChange={setValid10minDurationFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-60", label: "60以下" },
-                            { value: "60-90", label: "60-90" },
-                            { value: "above-90", label: "90以上" }
+                            { value: "0-40", label: "0-40" },
+                            { value: "41-80", label: "41-80" },
+                            { value: "81-120", label: "81-120" },
+                            { value: "above-120", label: "120+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>新增KP</span>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">新增KP</div>
                         <FilterSelect
                           value={newKPFilter}
                           onValueChange={setNewKPFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-2", label: "2以下" },
+                            { value: "0-1", label: "0-1" },
                             { value: "2-3", label: "2-3" },
-                            { value: "above-3", label: "3以上" }
+                            { value: "4-5", label: "4-5" },
+                            { value: "above-5", label: "5+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>今日有效小计数</span>
+                    <TableHead className="min-w-[130px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">今日有效小计数</div>
                         <FilterSelect
                           value={todayValidTotalFilter}
                           onValueChange={setTodayValidTotalFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-20", label: "20以下" },
-                            { value: "20-30", label: "20-30" },
-                            { value: "above-30", label: "30以上" }
+                            { value: "0-15", label: "0-15" },
+                            { value: "16-25", label: "16-25" },
+                            { value: "26-35", label: "26-35" },
+                            { value: "above-35", label: "35+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>新增商机数</span>
+                    <TableHead className="min-w-[120px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">新增商机数</div>
                         <FilterSelect
                           value={newOpportunitiesFilter}
                           onValueChange={setNewOpportunitiesFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "0", label: "0个" },
-                            { value: "1-2", label: "1-2个" },
-                            { value: "above-2", label: "2个以上" }
+                            { value: "0", label: "0" },
+                            { value: "1-2", label: "1-2" },
+                            { value: "3-4", label: "3-4" },
+                            { value: "above-4", label: "4+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>新增意向</span>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">新增意向</div>
                         <FilterSelect
                           value={newIntentionsFilter}
                           onValueChange={setNewIntentionsFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-2", label: "2以下" },
+                            { value: "0-1", label: "0-1" },
                             { value: "2-3", label: "2-3" },
-                            { value: "above-3", label: "3以上" }
+                            { value: "4-5", label: "4-5" },
+                            { value: "above-5", label: "5+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>新增潜在</span>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">新增潜在</div>
                         <FilterSelect
                           value={newPotentialFilter}
                           onValueChange={setNewPotentialFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-3", label: "3以下" },
+                            { value: "0-2", label: "0-2" },
                             { value: "3-5", label: "3-5" },
-                            { value: "above-5", label: "5以上" }
+                            { value: "6-8", label: "6-8" },
+                            { value: "above-8", label: "8+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>新增兴趣</span>
+                    <TableHead className="min-w-[100px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">新增兴趣</div>
                         <FilterSelect
                           value={newInterestFilter}
                           onValueChange={setNewInterestFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "below-5", label: "5以下" },
-                            { value: "5-7", label: "5-7" },
-                            { value: "above-7", label: "7以上" }
+                            { value: "0-3", label: "0-3" },
+                            { value: "4-6", label: "4-6" },
+                            { value: "7-9", label: "7-9" },
+                            { value: "above-9", label: "9+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>赢单</span>
+                    <TableHead className="min-w-[80px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">赢单</div>
                         <FilterSelect
                           value={wonDealsFilter}
                           onValueChange={setWonDealsFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "0", label: "0个" },
-                            { value: "1", label: "1个" },
-                            { value: "above-1", label: "1个以上" }
+                            { value: "0", label: "0" },
+                            { value: "1", label: "1" },
+                            { value: "2", label: "2" },
+                            { value: "above-2", label: "2+" }
                           ]}
                           placeholder="全部"
                         />
                       </div>
                     </TableHead>
-                    <TableHead>
-                      <div className="flex flex-col gap-1">
-                        <span>订单新增机器人测试</span>
+                    <TableHead className="min-w-[160px]">
+                      <div className="space-y-1">
+                        <div className="font-medium">订单新增机器人测试</div>
                         <FilterSelect
                           value={newRobotTestsFilter}
                           onValueChange={setNewRobotTestsFilter}
                           options={[
                             { value: "all", label: "全部" },
-                            { value: "0", label: "0个" },
-                            { value: "1", label: "1个" },
-                            { value: "above-1", label: "1个以上" }
+                            { value: "0", label: "0" },
+                            { value: "1", label: "1" },
+                            { value: "above-1", label: "1+" }
                           ]}
                           placeholder="全部"
                         />
