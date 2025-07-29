@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -14,8 +13,32 @@ const CRMAnalysis = () => {
   const [performanceFilter, setPerformanceFilter] = useState("all");
   const [wechatFriendsFilter, setWechatFriendsFilter] = useState("all");
   const [touchCountFilter, setTouchCountFilter] = useState("all");
+  const [touchRateFilter, setTouchRateFilter] = useState("all");
+  const [wechatDeepFilter, setWechatDeepFilter] = useState("all");
+  const [deepChatRateFilter, setDeepChatRateFilter] = useState("all");
+  const [newWechatFriendsFilter, setNewWechatFriendsFilter] = useState("all");
+  const [momentsCountFilter, setMomentsCountFilter] = useState("all");
+  const [momentsCommentsFilter, setMomentsCommentsFilter] = useState("all");
+  const [momentsLikesFilter, setMomentsLikesFilter] = useState("all");
   const [outboundCallsFilter, setOutboundCallsFilter] = useState("all");
+  const [callDurationFilter, setCallDurationFilter] = useState("all");
+  const [connectedCallsFilter, setConnectedCallsFilter] = useState("all");
+  const [connectionRateFilter, setConnectionRateFilter] = useState("all");
   const [valid30sFilter, setValid30sFilter] = useState("all");
+  const [valid60sFilter, setValid60sFilter] = useState("all");
+  const [valid60sDurationFilter, setValid60sDurationFilter] = useState("all");
+  const [valid60sRateFilter, setValid60sRateFilter] = useState("all");
+  const [valid3minFilter, setValid3minFilter] = useState("all");
+  const [valid10minFilter, setValid10minFilter] = useState("all");
+  const [valid10minDurationFilter, setValid10minDurationFilter] = useState("all");
+  const [newKPFilter, setNewKPFilter] = useState("all");
+  const [todayValidTotalFilter, setTodayValidTotalFilter] = useState("all");
+  const [newOpportunitiesFilter, setNewOpportunitiesFilter] = useState("all");
+  const [newIntentionsFilter, setNewIntentionsFilter] = useState("all");
+  const [newPotentialFilter, setNewPotentialFilter] = useState("all");
+  const [newInterestFilter, setNewInterestFilter] = useState("all");
+  const [wonDealsFilter, setWonDealsFilter] = useState("all");
+  const [newRobotTestsFilter, setNewRobotTestsFilter] = useState("all");
 
   const mockTableData = [
     {
@@ -26,6 +49,8 @@ const CRMAnalysis = () => {
       wechatFriends: 320,
       touchCount: 45,
       touchRate: "14.1%",
+      wechatDeep: 15,
+      deepChatRate: "33.3%",
       newWechatFriends: 5,
       momentsCount: 3,
       momentsComments: 8,
@@ -58,6 +83,8 @@ const CRMAnalysis = () => {
       wechatFriends: 280,
       touchCount: 38,
       touchRate: "13.5%",
+      wechatDeep: 12,
+      deepChatRate: "31.6%",
       newWechatFriends: 3,
       momentsCount: 2,
       momentsComments: 6,
@@ -90,6 +117,8 @@ const CRMAnalysis = () => {
       wechatFriends: 420,
       touchCount: 52,
       touchRate: "12.4%",
+      wechatDeep: 18,
+      deepChatRate: "34.6%",
       newWechatFriends: 7,
       momentsCount: 4,
       momentsComments: 12,
@@ -122,6 +151,8 @@ const CRMAnalysis = () => {
       wechatFriends: 180,
       touchCount: 22,
       touchRate: "12.2%",
+      wechatDeep: 8,
+      deepChatRate: "36.4%",
       newWechatFriends: 2,
       momentsCount: 1,
       momentsComments: 3,
@@ -154,6 +185,8 @@ const CRMAnalysis = () => {
       wechatFriends: 250,
       touchCount: 35,
       touchRate: "14.0%",
+      wechatDeep: 14,
+      deepChatRate: "40.0%",
       newWechatFriends: 4,
       momentsCount: 3,
       momentsComments: 7,
@@ -186,6 +219,8 @@ const CRMAnalysis = () => {
       wechatFriends: 380,
       touchCount: 48,
       touchRate: "12.6%",
+      wechatDeep: 20,
+      deepChatRate: "41.7%",
       newWechatFriends: 6,
       momentsCount: 4,
       momentsComments: 10,
@@ -218,6 +253,8 @@ const CRMAnalysis = () => {
       wechatFriends: 150,
       touchCount: 18,
       touchRate: "12.0%",
+      wechatDeep: 6,
+      deepChatRate: "33.3%",
       newWechatFriends: 2,
       momentsCount: 2,
       momentsComments: 4,
@@ -247,36 +284,42 @@ const CRMAnalysis = () => {
   const filteredData = useMemo(() => {
     return mockTableData.filter(item => {
       if (employeeFilter !== "all" && item.department !== employeeFilter) return false;
+      
       if (wechatDeepChatFilter !== "all") {
         const value = item.wechatDeepChat;
         if (wechatDeepChatFilter === "below-10" && value >= 10) return false;
         if (wechatDeepChatFilter === "10-15" && (value < 10 || value > 15)) return false;
         if (wechatDeepChatFilter === "above-15" && value <= 15) return false;
       }
+      
       if (performanceFilter !== "all") {
         const value = item.todayPerformance;
         if (performanceFilter === "below-3000" && value >= 3000) return false;
         if (performanceFilter === "3000-6000" && (value < 3000 || value > 6000)) return false;
         if (performanceFilter === "above-6000" && value <= 6000) return false;
       }
+      
       if (wechatFriendsFilter !== "all") {
         const value = item.wechatFriends;
         if (wechatFriendsFilter === "below-200" && value >= 200) return false;
         if (wechatFriendsFilter === "200-300" && (value < 200 || value > 300)) return false;
         if (wechatFriendsFilter === "above-300" && value <= 300) return false;
       }
+      
       if (touchCountFilter !== "all") {
         const value = item.touchCount;
         if (touchCountFilter === "below-30" && value >= 30) return false;
         if (touchCountFilter === "30-45" && (value < 30 || value > 45)) return false;
         if (touchCountFilter === "above-45" && value <= 45) return false;
       }
+      
       if (outboundCallsFilter !== "all") {
         const value = item.outboundCalls;
         if (outboundCallsFilter === "below-50" && value >= 50) return false;
         if (outboundCallsFilter === "50-70" && (value < 50 || value > 70)) return false;
         if (outboundCallsFilter === "above-70" && value <= 70) return false;
       }
+      
       if (valid30sFilter !== "all") {
         const value = item.valid30s;
         if (valid30sFilter === "below-15" && value >= 15) return false;
@@ -285,7 +328,7 @@ const CRMAnalysis = () => {
       }
       return true;
     });
-  }, [employeeFilter, wechatDeepChatFilter, performanceFilter, wechatFriendsFilter, touchCountFilter, outboundCallsFilter, valid30sFilter]);
+  }, [employeeFilter, wechatDeepChatFilter, performanceFilter, wechatFriendsFilter, touchCountFilter, touchRateFilter, wechatDeepFilter, deepChatRateFilter, newWechatFriendsFilter, momentsCountFilter, momentsCommentsFilter, momentsLikesFilter, outboundCallsFilter, callDurationFilter, connectedCallsFilter, connectionRateFilter, valid30sFilter, valid60sFilter, valid60sDurationFilter, valid60sRateFilter, valid3minFilter, valid10minFilter, valid10minDurationFilter, newKPFilter, todayValidTotalFilter, newOpportunitiesFilter, newIntentionsFilter, newPotentialFilter, newInterestFilter, wonDealsFilter, newRobotTestsFilter]);
 
   const departmentStats = {
     "一区一部": {
@@ -458,7 +501,54 @@ const CRMAnalysis = () => {
                         />
                       </div>
                     </TableHead>
-                    <TableHead>触达率</TableHead>
+                    <TableHead>
+                      <div className="flex flex-col gap-1">
+                        <span>触达率</span>
+                        <FilterSelect
+                          value={touchRateFilter}
+                          onValueChange={setTouchRateFilter}
+                          options={[
+                            { value: "all", label: "全部" },
+                            { value: "below-13", label: "13%以下" },
+                            { value: "13-14", label: "13%-14%" },
+                            { value: "above-14", label: "14%以上" }
+                          ]}
+                          placeholder="全部"
+                        />
+                      </div>
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex flex-col gap-1">
+                        <span>微信深聊</span>
+                        <FilterSelect
+                          value={wechatDeepFilter}
+                          onValueChange={setWechatDeepFilter}
+                          options={[
+                            { value: "all", label: "全部" },
+                            { value: "below-10", label: "10以下" },
+                            { value: "10-15", label: "10-15" },
+                            { value: "above-15", label: "15以上" }
+                          ]}
+                          placeholder="全部"
+                        />
+                      </div>
+                    </TableHead>
+                    <TableHead>
+                      <div className="flex flex-col gap-1">
+                        <span>深聊/沟通数</span>
+                        <FilterSelect
+                          value={deepChatRateFilter}
+                          onValueChange={setDeepChatRateFilter}
+                          options={[
+                            { value: "all", label: "全部" },
+                            { value: "below-35", label: "35%以下" },
+                            { value: "35-40", label: "35%-40%" },
+                            { value: "above-40", label: "40%以上" }
+                          ]}
+                          placeholder="全部"
+                        />
+                      </div>
+                    </TableHead>
                     <TableHead>新增微信好友数</TableHead>
                     <TableHead>朋友圈数</TableHead>
                     <TableHead>朋友圈评论数</TableHead>
@@ -523,6 +613,8 @@ const CRMAnalysis = () => {
                       <TableCell>{item.wechatFriends}</TableCell>
                       <TableCell>{item.touchCount}</TableCell>
                       <TableCell>{item.touchRate}</TableCell>
+                      <TableCell>{item.wechatDeep}</TableCell>
+                      <TableCell>{item.deepChatRate}</TableCell>
                       <TableCell>{item.newWechatFriends}</TableCell>
                       <TableCell>{item.momentsCount}</TableCell>
                       <TableCell>{item.momentsComments}</TableCell>

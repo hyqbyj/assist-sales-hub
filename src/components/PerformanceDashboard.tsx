@@ -17,6 +17,17 @@ const PerformanceDashboard = () => {
       color: "green"
     },
     {
+      name: "一区二部",
+      performance: {
+        current: 75,
+        target: 100,
+        lastYear: 82,
+        lastMonth: 78
+      },
+      status: "下滑",
+      color: "red"
+    },
+    {
       name: "二区一部",
       performance: {
         current: 72,
@@ -28,6 +39,17 @@ const PerformanceDashboard = () => {
       color: "red"
     },
     {
+      name: "二区二部",
+      performance: {
+        current: 88,
+        target: 100,
+        lastYear: 85,
+        lastMonth: 86
+      },
+      status: "上升",
+      color: "green"
+    },
+    {
       name: "三区一部",
       performance: {
         current: 68,
@@ -37,13 +59,36 @@ const PerformanceDashboard = () => {
       },
       status: "下滑",
       color: "red"
+    },
+    {
+      name: "三区二部",
+      performance: {
+        current: 90,
+        target: 100,
+        lastYear: 87,
+        lastMonth: 89
+      },
+      status: "上升",
+      color: "green"
+    },
+    {
+      name: "资源拓展部",
+      performance: {
+        current: 80,
+        target: 100,
+        lastYear: 75,
+        lastMonth: 77
+      },
+      status: "上升",
+      color: "green"
     }
   ];
 
   const businessSummary = {
-    summary: "当前月份整体业绩表现：一区一部表现优异，业绩同比上升8.9%；二区一部和三区一部出现下滑趋势，需要重点关注。",
+    summary: "当前月份整体业绩表现：一区一部、二区二部、三区二部、资源拓展部表现优异，业绩呈上升趋势；一区二部、二区一部和三区一部出现下滑趋势，需要重点关注。",
     recommendations: {
-      "二区一部": "建议加强电销技能培训，提高30S有效外呼转化率",
+      "一区二部": "建议加强电销技能培训，提高30S有效外呼转化率",
+      "二区一部": "建议优化外呼时间安排，提升接通率和有效沟通时长",
       "三区一部": "建议增加微信深度沟通频次，优化朋友圈营销策略"
     }
   };
