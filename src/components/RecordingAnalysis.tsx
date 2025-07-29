@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -17,6 +17,7 @@ const RecordingAnalysis = () => {
       department: "一区一部",
       customer: "XX医院",
       duration: "3分15秒",
+      durationSeconds: 195,
       monthlyCallCount: 12,
       keywords: ["价格", "合同", "心态"],
       recordLink: "#"
@@ -26,20 +27,75 @@ const RecordingAnalysis = () => {
       department: "二区一部",
       customer: "YY集团",
       duration: "1分45秒",
+      durationSeconds: 105,
       monthlyCallCount: 8,
       keywords: ["友商", "技能", "共情"],
       recordLink: "#"
     },
     {
       employee: "王五",
-      department: "三区二部",
+      department: "三区一部",
       customer: "ZZ机构",
       duration: "45秒",
+      durationSeconds: 45,
       monthlyCallCount: 5,
       keywords: ["价格", "共识"],
       recordLink: "#"
+    },
+    {
+      employee: "赵六",
+      department: "一区二部",
+      customer: "AA诊所",
+      duration: "2分30秒",
+      durationSeconds: 150,
+      monthlyCallCount: 7,
+      keywords: ["友商", "技能"],
+      recordLink: "#"
+    },
+    {
+      employee: "孙七",
+      department: "二区二部",
+      customer: "BB医院",
+      duration: "4分20秒",
+      durationSeconds: 260,
+      monthlyCallCount: 15,
+      keywords: ["价格", "合同", "共情"],
+      recordLink: "#"
+    },
+    {
+      employee: "周八",
+      department: "三区二部",
+      customer: "CC机构",
+      duration: "30秒",
+      durationSeconds: 30,
+      monthlyCallCount: 3,
+      keywords: ["心态", "共识"],
+      recordLink: "#"
+    },
+    {
+      employee: "吴九",
+      department: "资源拓展部",
+      customer: "DD集团",
+      duration: "2分10秒",
+      durationSeconds: 130,
+      monthlyCallCount: 10,
+      keywords: ["价格", "技能", "共行"],
+      recordLink: "#"
     }
   ];
+
+  const filteredData = useMemo(() => {
+    return mockData.filter(item => {
+      if (departmentFilter !== "all" && item.department !== departmentFilter) return false;
+      if (durationFilter !== "all") {
+        const duration = item.durationSeconds;
+        if (durationFilter === "20s-1m" && (duration < 20 || duration > 60)) return false;
+        if (durationFilter === "1m-3m" && (duration < 60 || duration > 180)) return false;
+        if (durationFilter === "3m+" && duration <= 180) return false;
+      }
+      return true;
+    });
+  }, [departmentFilter, durationFilter]);
 
   const getKeywordColor = (keyword: string) => {
     if (["价格", "合同", "友商"].includes(keyword)) return "bg-blue-100 text-blue-700";
@@ -71,13 +127,13 @@ const RecordingAnalysis = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">全部部门</SelectItem>
-              <SelectItem value="1-1">一区一部</SelectItem>
-              <SelectItem value="1-2">一区二部</SelectItem>
-              <SelectItem value="2-1">二区一部</SelectItem>
-              <SelectItem value="2-2">二区二部</SelectItem>
-              <SelectItem value="3-1">三区一部</SelectItem>
-              <SelectItem value="3-2">三区二部</SelectItem>
-              <SelectItem value="resource">资源拓展部</SelectItem>
+              <SelectItem value="一区一部">一区一部</SelectItem>
+              <SelectItem value="一区二部">一区二部</SelectItem>
+              <SelectItem value="二区一部">二区一部</SelectItem>
+              <SelectItem value="二区二部">二区二部</SelectItem>
+              <SelectItem value="三区一部">三区一部</SelectItem>
+              <SelectItem value="三区二部">三区二部</SelectItem>
+              <SelectItem value="资源拓展部">资源拓展部</SelectItem>
             </SelectContent>
           </Select>
 
@@ -108,7 +164,7 @@ const RecordingAnalysis = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockData.map((item, index) => (
+              {filteredData.map((item, index) => (
                 <TableRow key={index} className="hover:bg-gray-50">
                   <TableCell className="font-medium">{item.employee}</TableCell>
                   <TableCell>{item.department}</TableCell>

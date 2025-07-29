@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -24,12 +24,54 @@ const DingTalkReports = () => {
       historicalTarget: "月度销售额40万",
       currentTarget: "月度销售额45万", 
       executionAnalysis: "目标完成度45%，需要加强"
+    },
+    {
+      employee: "王五",
+      department: "三区一部",
+      historicalTarget: "月度销售额35万",
+      currentTarget: "月度销售额40万",
+      executionAnalysis: "目标完成度85%，表现优秀"
+    },
+    {
+      employee: "赵六",
+      department: "一区二部",
+      historicalTarget: "月度销售额30万",
+      currentTarget: "月度销售额35万",
+      executionAnalysis: "目标完成度60%，需要努力"
+    },
+    {
+      employee: "孙七",
+      department: "二区二部",
+      historicalTarget: "月度销售额45万",
+      currentTarget: "月度销售额50万",
+      executionAnalysis: "目标完成度72%，进度良好"
+    },
+    {
+      employee: "周八",
+      department: "三区二部",
+      historicalTarget: "月度销售额38万",
+      currentTarget: "月度销售额42万",
+      executionAnalysis: "目标完成度90%，表现优秀"
+    },
+    {
+      employee: "吴九",
+      department: "资源拓展部",
+      historicalTarget: "月度新增客户20个",
+      currentTarget: "月度新增客户25个",
+      executionAnalysis: "目标完成度65%，需要加强"
     }
   ];
 
+  const filteredData = useMemo(() => {
+    return mockData.filter(item => {
+      if (departmentFilter !== "all" && item.department !== departmentFilter) return false;
+      return true;
+    });
+  }, [departmentFilter]);
+
   const getStatusColor = (analysis: string) => {
-    if (analysis.includes("良好")) return "bg-green-100 text-green-700";
-    if (analysis.includes("需要加强")) return "bg-red-100 text-red-700";
+    if (analysis.includes("良好") || analysis.includes("优秀")) return "bg-green-100 text-green-700";
+    if (analysis.includes("需要加强") || analysis.includes("需要努力")) return "bg-red-100 text-red-700";
     return "bg-yellow-100 text-yellow-700";
   };
 
@@ -55,13 +97,13 @@ const DingTalkReports = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">全部部门</SelectItem>
-              <SelectItem value="1-1">一区一部</SelectItem>
-              <SelectItem value="1-2">一区二部</SelectItem>
-              <SelectItem value="2-1">二区一部</SelectItem>
-              <SelectItem value="2-2">二区二部</SelectItem>
-              <SelectItem value="3-1">三区一部</SelectItem>
-              <SelectItem value="3-2">三区二部</SelectItem>
-              <SelectItem value="resource">资源拓展部</SelectItem>
+              <SelectItem value="一区一部">一区一部</SelectItem>
+              <SelectItem value="一区二部">一区二部</SelectItem>
+              <SelectItem value="二区一部">二区一部</SelectItem>
+              <SelectItem value="二区二部">二区二部</SelectItem>
+              <SelectItem value="三区一部">三区一部</SelectItem>
+              <SelectItem value="三区二部">三区二部</SelectItem>
+              <SelectItem value="资源拓展部">资源拓展部</SelectItem>
             </SelectContent>
           </Select>
 
@@ -89,7 +131,7 @@ const DingTalkReports = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockData.map((item, index) => (
+              {filteredData.map((item, index) => (
                 <TableRow key={index} className="hover:bg-gray-50">
                   <TableCell className="font-medium">{item.employee}</TableCell>
                   <TableCell>{item.department}</TableCell>
