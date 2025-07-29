@@ -28,23 +28,24 @@ interface AppSidebarProps {
 }
 
 const AppSidebar = ({ activeTab, onTabChange, onAIClick }: AppSidebarProps) => {
-  const { collapsed, setCollapsed } = useSidebar();
+  const { state, toggleSidebar } = useSidebar();
+  const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar className={collapsed ? "w-16" : "w-64"} collapsible>
+    <Sidebar className={isCollapsed ? "w-16" : "w-64"} collapsible="icon">
       <div className="flex flex-col h-full">
         <div className="p-4 border-b bg-white">
           <div className="flex items-center justify-between">
-            {!collapsed && (
+            {!isCollapsed && (
               <h2 className="font-semibold text-gray-900">销售管理系统</h2>
             )}
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={toggleSidebar}
               className="h-8 w-8"
             >
-              {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+              {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
             </Button>
           </div>
         </div>
@@ -61,7 +62,7 @@ const AppSidebar = ({ activeTab, onTabChange, onAIClick }: AppSidebarProps) => {
                       className="w-full justify-start hover:bg-blue-50 hover:text-blue-700 data-[active=true]:bg-blue-100 data-[active=true]:text-blue-700 transition-colors"
                     >
                       <item.icon className="h-5 w-5" />
-                      {!collapsed && <span className="ml-3">{item.title}</span>}
+                      {!isCollapsed && <span className="ml-3">{item.title}</span>}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -76,7 +77,7 @@ const AppSidebar = ({ activeTab, onTabChange, onAIClick }: AppSidebarProps) => {
             className="w-full justify-start bg-blue-600 hover:bg-blue-700 text-white transition-colors"
           >
             <Bot className="h-5 w-5" />
-            {!collapsed && <span className="ml-3">AI助理</span>}
+            {!isCollapsed && <span className="ml-3">AI助理</span>}
           </Button>
         </div>
       </div>
