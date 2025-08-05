@@ -159,7 +159,7 @@ const RecordingAnalysis = () => {
                 <TableHead>客户</TableHead>
                 <TableHead>通话时长</TableHead>
                 <TableHead>当月通话次数</TableHead>
-                <TableHead>关键词</TableHead>
+                <TableHead>关键词（五维标签体系+八步法+“共情共识共行”）</TableHead>
                 <TableHead>完整记录</TableHead>
               </TableRow>
             </TableHeader>
